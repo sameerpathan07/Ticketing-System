@@ -5,6 +5,9 @@ COPY pom.xml .
 RUN mvn dependency:go-offline -B
 COPY src ./src
 RUN mvn package -DskipTests -B
+    -Dmaven.compiler.source=17 \
+    -Dmaven.compiler.target=17 \
+    -Djava.version=17
 
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
